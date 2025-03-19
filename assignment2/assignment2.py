@@ -42,10 +42,15 @@ print("employee_id_column", employee_id_column)
 
 def first_name(row_number):
     index = column_index("first_name")
+    # index vs number ambiguity: task says number (row) (index-1), test expects index
+    # row_index = row_number-1
+    # row = employees["rows"][row_index]
     row = employees["rows"][row_number]
+    print("row", row)
     return row[index]
 
-print("first_name", first_name(0))
+print("employees", employees)
+print("first_name", first_name(2))
 
 def employee_find(employee_id):
     def employee_match(row):
@@ -64,8 +69,10 @@ print("employee_find_2", employee_find_2(3))
 def sort_by_last_name():
     employees["rows"].sort(key = lambda row: row[column_index("last_name")])
     return employees["rows"]
-
+sort_by_last_name()
 print(sort_by_last_name())
+print("employees", employees)
+print("first_name", first_name(2))
 
 def employee_dict(row):
     new_dict={}
