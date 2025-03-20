@@ -187,18 +187,18 @@ def pig_latin(s):
             str_in_list.append(pop_letter)
         
         # function to check first 2 letters and reorganize them if necessary
-        def check_letters(letters):
-            if letters[0] in vowels or len(letters) == 2:
+        def check_letters():
+            if str_in_list[0] in vowels or len(str_in_list) == 2:
                 return
-            if letters[0] == "q" and letters[1] == 'u':
+            if str_in_list[0] == "q" and str_in_list[1] == 'u':
                 for _ in range(2):
                     reorganize()
             else:
                 reorganize()
             # check again until return condition met
-            check_letters(letters)
+            check_letters()
         # run the function with word we are checking 
-        check_letters(str_in_list)
+        check_letters()
 
         final_modification()
 
@@ -218,5 +218,6 @@ pig_latin("hug")
 pig_latin("squint")
 pig_latin("qu")
 pig_latin("b")
+pig_latin("a")
 pig_latin(5)
 pig_latin(True)
