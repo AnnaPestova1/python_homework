@@ -8,11 +8,13 @@ try:
     count = 0
     answer = str()
     with open("diary.txt", "a") as file:
+        # diary struggle to have a data
         today = datetime.datetime.now()
         file.write(new_line(today.strftime("%x")))
         while answer != "done for now":
             if count == 0:
                 answer = input("What happened today? ")
+                # count help us to ask question "What happened today?" only once
                 count += 1
                 file.write(new_line(answer))
         # when you finish your description print "done for now" in input
