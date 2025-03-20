@@ -159,6 +159,8 @@ def hangman(secret, guess):
 hangman("difficulty","ic")
 
 def pig_latin(s):
+    if type(s) is not str:
+        return
     list_of_strings = s.split(" ")
     vowels = ("a", "e", "o", "u", "i")
     # container to save transformed words 
@@ -167,6 +169,17 @@ def pig_latin(s):
         
         # transform unmodified string to modified list
         str_in_list=list(word)
+
+        def final_modification():
+            # add letters when letters it the word reorganized
+            str_in_list.append("ay")
+            # add word as string in the list
+            modified_list.append("".join(str_in_list))
+
+
+        if len(str_in_list) == 1:
+            final_modification()
+            break
 
         # function to reorganize letters
         def reorganize():
@@ -189,11 +202,8 @@ def pig_latin(s):
         # run the function with word we are checking 
         check_letters(str_in_list)
 
-        # add letters when letters it the word reorganized
-        str_in_list.append("ay")
+        final_modification()
 
-        # add word as string in the list
-        modified_list.append("".join(str_in_list))
     print("modified_list", " ".join(modified_list))
     # return previously created list of mew words as string
     return(" ".join(modified_list))
@@ -209,3 +219,6 @@ pig_latin("the quick brown fox")
 pig_latin("hug")
 pig_latin("squint")
 pig_latin("qu")
+pig_latin("b")
+pig_latin(5)
+pig_latin(True)
