@@ -129,10 +129,10 @@ student_scores("best", Tom=75, Dick=89, Angela=91, Frank=50 )
 
 def titleize(str):
     little_words=("and", "a", "is", "an", "the", "of", "in")
-    list = str.split()
+    str_to_list = str.split()
     new_list = []
-    for i, word in enumerate(list):
-      if i == 0 or i==(len(list)-1) or word not in little_words:
+    for i, word in enumerate(str_to_list):
+      if i == 0 or i==(len(str_to_list)-1) or word not in little_words:
         new_list.append(word.capitalize())
       else:
         new_list.append(word)
@@ -158,25 +158,44 @@ def hangman(secret, guess):
 
 hangman("difficulty","ic")
 
-def pig_latin(str):
-    list_of_strings = str.split(" ")
+def pig_latin(s):
+    list_of_strings = s.split(" ")
     vowels = ("a", "e", "o", "u", "i")
+    # container to save transformed words 
     modified_list = []
     for word in list_of_strings:
-      str_in_list=list(word)
-      while str_in_list[0] not in vowels and str_in_list[0] != "q" and str_in_list[1] != "u":
-        pop_letter=str_in_list.pop(0)
-        str_in_list.append(pop_letter)
-      if str_in_list[0] == "q" and str_in_list[1] == "u":
-        for _ in range(2):
-          pop_letter=str_in_list.pop(0)
-          str_in_list.append(pop_letter)
-      else:
-        str_in_list
+        
+        # transform unmodified string to modified list
+        str_in_list=list(word)
 
-      str_in_list.append("ay")
-      modified_list.append("".join(str_in_list))
+        # function to reorganize letters
+        def reorganize():
+            pop_letter=str_in_list.pop(0)
+            str_in_list.append(pop_letter)
+        
+        # function to check first 2 letters and reorganize them if necessary
+        def check_letters(letters):
+            if letters[0] in vowels:
+                return
+            if letters[0] == "q" and letters[1] == 'u':
+                if len(letters) == 2:
+                    return 
+                for _ in range(2):
+                    reorganize()
+            else:
+                reorganize()
+            # check again until return condition met
+            check_letters(letters)
+        # run the function with word we are checking 
+        check_letters(str_in_list)
+
+        # add letters when letters it the word reorganized
+        str_in_list.append("ay")
+
+        # add word as string in the list
+        modified_list.append("".join(str_in_list))
     print("modified_list", " ".join(modified_list))
+    # return previously created list of mew words as string
     return(" ".join(modified_list))
 
 
@@ -187,3 +206,6 @@ pig_latin("cherry")
 pig_latin("quiet")
 pig_latin("square")
 pig_latin("the quick brown fox")
+pig_latin("hug")
+pig_latin("squint")
+pig_latin("qu")
