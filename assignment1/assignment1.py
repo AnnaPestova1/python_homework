@@ -188,11 +188,9 @@ def pig_latin(s):
         
         # function to check first 2 letters and reorganize them if necessary
         def check_letters(letters):
-            if letters[0] in vowels:
+            if letters[0] in vowels or len(letters) == 2:
                 return
             if letters[0] == "q" and letters[1] == 'u':
-                if len(letters) == 2:
-                    return 
                 for _ in range(2):
                     reorganize()
             else:
