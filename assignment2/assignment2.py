@@ -75,17 +75,23 @@ def sort_by_last_name():
 
 sort_by_last_name()
 # print(sort_by_last_name())
-# print("employees", employees)
+print("employees", employees)
 # print("first_name", first_name(2))
 
 def employee_dict(row):
     new_dict={}
-    for field in employees["fields"]:
-        # exclude column with employee_id from the row
-        if(field == "employee_id"):
-            continue
-        else:
-            new_dict[field] = row[column_index(field)]
+    """variant 1"""
+    # for field in employees["fields"]:
+    #     # exclude column with employee_id from the row
+    #     if(field == "employee_id"):
+    #         continue
+    #     else:
+            # new_dict[field] = row[column_index(field)]
+    """variant 2"""
+    zip_dict = zip(employees["fields"], row)
+    new_dict = dict(zip_dict)
+    new_dict.pop("employee_id")
+    print("new_dict", new_dict)
     return new_dict
 
 print(employee_dict(employees["rows"][0]))
@@ -97,20 +103,20 @@ def all_employees_dict():
         new_dict[row[column_index("employee_id")]] = employee_dict(row)
     return new_dict
 
-print(all_employees_dict())
+print("all_employees_dict", all_employees_dict())
 
 # do not forget print 'export THISVALUE=ABC' in the terminal where you are running tests
 def get_this_value():
     return os.environ.get("THISVALUE")
 
-print(get_this_value())
+print("get_this_value", get_this_value())
 
 def set_that_secret(new_secret):
     return custom_module.set_secret(new_secret)
 
-# print("custom_module before run set_that_secret()", custom_module.secret)
+print("custom_module before run set_that_secret()", custom_module.secret)
 set_that_secret("watermelon")
-# print("custom_module after run set_that_secret()", custom_module.secret)
+print("custom_module after run set_that_secret()", custom_module.secret)
 
 def read_minutes():
     # reusable function
@@ -150,7 +156,8 @@ def read_minutes():
     return minutes1, minutes2
 
 minutes1, minutes2 = read_minutes()
-# print(minutes1, minutes2)
+print("minutes1", minutes1)
+print("minutes2", minutes2)
 
 
 def create_minutes_set():
@@ -158,7 +165,7 @@ def create_minutes_set():
 
 
 minutes_set = create_minutes_set()  
-# print("minutes_set", minutes_set)  
+print("minutes_set", minutes_set)  
 
 
 def create_minutes_list():
@@ -167,7 +174,7 @@ def create_minutes_list():
     return result
 
 minutes_list = create_minutes_list()
-# print("minutes_list", minutes_list)
+print("minutes_list", minutes_list)
 
 def write_sorted_list():
     minutes_list.sort(key = lambda row: row[1])

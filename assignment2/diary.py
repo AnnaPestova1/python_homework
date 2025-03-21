@@ -1,8 +1,8 @@
 import traceback
 import datetime
 
-def new_line(str):
-    return str+"\n"
+def new_line(data):
+    return data+"\n"
 
 try:
     count = 0
@@ -17,7 +17,7 @@ try:
                 # count help us to ask question "What happened today?" only once
                 count += 1
                 file.write(new_line(answer))
-        # when you finish your description print "done for now" in input
+            # when you finish your description print "done for now" in input
             else:
                 answer = input("What else? ")
                 """ In the current code, we can omit count += 1 here because 
