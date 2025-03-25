@@ -2,9 +2,7 @@ import pandas as pd
 
 """Task 1"""
 data = {
-    # test expects `charlie` with lowercase
-    # 'Name': ['Alice', 'Bob', 'Charlie'],
-    'Name': ['Alice', 'Bob', 'charlie'],
+    'Name': ['Alice', 'Bob', 'Charlie'],
     'Age': [25, 30, 35],
     'City': ['New York', 'Los Angeles', 'Chicago']
 }
