@@ -64,7 +64,7 @@ clean_data = dirty_data.copy()
 print("\nclean_data\n", clean_data)
 
 # Remove any duplicate rows from the DataFrame
-clean_data = clean_data.drop_duplicates()
+clean_data.drop_duplicates(inplace=True)
 print("\nclean_data drop_duplicates\n", clean_data)
 
 # Convert Age to numeric and handle missing values
@@ -86,12 +86,15 @@ clean_data["Salary"] = clean_data["Salary"].fillna(median_salary)
 print("\nclean_data Fill missing numeric values \n", clean_data)
 
 # Convert Hire Date to datetime
-clean_data["Hire Date"] = pd.to_datetime(clean_data["Hire Date"], errors="coerce")
-print("\nclean_data onvert Hire Date to datetime\n", clean_data)
+clean_data["Hire Date"] = pd.to_datetime(clean_data["Hire Date"], errors="coerce", format='mixed')
+print("\nclean_data convert Hire Date to datetime\n", clean_data)
 
 # Strip extra whitespace and standardize Name and Department as uppercase
 clean_data["Department"] = clean_data["Department"].str.strip()
 clean_data["Department"] = clean_data["Department"].str.upper()
-clean_data["Name"] = clean_data["Name"].str.strip()
-clean_data["Name"] = clean_data["Name"].str.upper()
+# chaining
+clean_data["Name"] = clean_data["Name"].str.strip().str.upper()
 print("\nclean_data Strip extra whitespace and uppercase\n", clean_data)
+
+nat_count = clean_data['Hire Date'].isna().sum()
+print("nat_count",nat_count)
