@@ -112,11 +112,11 @@ You need to do a JOIN on the employees and orders tables, and then use
 GROUP BY, COUNT, and HAVING.'''
 
 cursor.execute("""
-SELECT e.first_name, e.last_name, COUNT(o.order_id)
+SELECT e.first_name, e.last_name, COUNT(o.order_id) as orders_count
 FROM Employees AS e
 JOIN Orders AS o ON o.employee_id = e.employee_id
 GROUP BY e.employee_id
-HAVING COUNT(o.order_id);
+HAVING COUNT(o.order_id) > 5;
 """)
 print("task4", cursor.fetchall())
 conn.close()
