@@ -109,10 +109,12 @@ print("task3 new orders", cursor.fetchall())
 '''Find all employees associated with more than 5 orders.  
 You want the first_name, the last_name, and the count of orders.  
 You need to do a JOIN on the employees and orders tables, and then use 
-GROUP BY, COUNT, and HAVING.'''
+GROUP BY, COUNT, and HAVING.
+Add code advanced_sql.py to print out the employee_id, first_name, last_name, 
+and an order count for each of the employees with more than 5 orders.'''
 
 cursor.execute("""
-SELECT e.first_name, e.last_name, COUNT(o.order_id) as orders_count
+SELECT e.employee_id, e.first_name, e.last_name, COUNT(o.order_id) as orders_count
 FROM Employees AS e
 JOIN Orders AS o ON o.employee_id = e.employee_id
 GROUP BY e.employee_id
