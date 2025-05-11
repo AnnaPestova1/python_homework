@@ -1,0 +1,37 @@
+Which sections of the website are restricted for crawling?
+
+for all user agents allow follow links:
+Allow: /w/api.php?action=mobileview&
+Allow: /w/load.php?
+Allow: /api/rest_v1/?doc
+
+and recommended to disallow a lot of links. some of the them are very wide:
+Disallow: /w/
+Disallow: /api/
+Disallow: /trap/
+Disallow: /wiki/Special:
+Disallow: /wiki/Spezial:
+Disallow: /wiki/Spesial:
+Disallow: /wiki/Special%3A
+Disallow: /wiki/Spezial%3A
+Disallow: /wiki/Spesial%3A
+
+others very specific:
+Disallow: /wiki/Wikipedia:Articles_for_deletion/
+Disallow: /wiki/Wikipedia:Changing_username
+
+I assume the disallow in robot.txt added after some type of decisions (because they have the some letter-number identification)
+on the top (example # T16793) 
+
+
+Are there specific rules for certain user agents?
+
+some user agents disallow to crawling entire Stories(example 
+User-agent: Download Ninja
+Disallow: /
+)
+
+Robot.txt contains rules for user agents regarding all site. 
+It is recommendation from the site owner what to expect from web scrapers. 
+The purpose is to protect some information and expectation that user agent will follow this rules,
+even the access is not restricted. 
