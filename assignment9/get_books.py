@@ -42,8 +42,8 @@ try:
     print("pages", pages)
     print('body', body)
     for i in range(pages):
-        print("pages", pages)
-        print('body', body)
+        # print("pages", pages)
+        # print('body', body)
         sleep(3)
         print(i)
         if i > 0: 
@@ -78,7 +78,7 @@ try:
             # print('span_with_format_and_year', span_with_format_and_year)
             format_and_year = span_with_format_and_year.text
             # print('format_and_year', format_and_year)
-            # want to remove language, because it is out of scope of assignment
+            # I want to remove language, from format_and_year variable, because it is out of scope of assignment
             format_and_year = re.sub(r'\s\|.*', '', format_and_year)
             # print('format_and_year', format_and_year)
             
