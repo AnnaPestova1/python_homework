@@ -16,31 +16,30 @@ search_string = 'learning%20spanish'
 # driver.get(robots_url)
 # print(driver.page_source)
 # driver.quit()
-driver.get(f'https://durhamcounty.bibliocommons.com/v2/search?query={search_string}&searchType=smart')
 
-body = driver.find_element(By.CSS_SELECTOR,'body') 
-# print('body', body)
-
-# # amount of paged to paginate
-pagination = body.find_element(By.CLASS_NAME, 'pagination--compact')
-# print('pagination', pagination)
-pagination_label = pagination.find_element(By.CSS_SELECTOR, 'span.cp-pagination-label')
-# print('pagination_label', pagination_label)
-pagination_result = pagination_label.text
-print('pagination_result', pagination_result)
-pagination_total_results = re.compile(r'(\d+) to (\d+) of (\d+)').match(pagination_result)
-# print('pagination_total_results', pagination_total_results)
-per_page = int(pagination_total_results.group(2))
-total = int(pagination_total_results.group(3))
-# print(per_page, total)
-# I do not want to paginate more than 20 pages
-rounded_pages = math.floor(total/per_page) if math.floor(total/per_page) < 20 else 20
-# print('rounded_pages', rounded_pages)
-pages = rounded_pages+1 if (rounded_pages < 20 and total % per_page != 0) else rounded_pages
-print(pages)
 try:
-    print("pages", pages)
-    print('body', body)
+    driver.get(f'https://durhamcounty.bibliocommons.com/v2/search?query={search_string}&searchType=smart')
+
+    body = driver.find_element(By.CSS_SELECTOR,'body') 
+    # print('body', body)
+
+    # # amount of paged to paginate
+    pagination = body.find_element(By.CLASS_NAME, 'pagination--compact')
+    # print('pagination', pagination)
+    pagination_label = pagination.find_element(By.CSS_SELECTOR, 'span.cp-pagination-label')
+    # print('pagination_label', pagination_label)
+    pagination_result = pagination_label.text
+    print('pagination_result', pagination_result)
+    pagination_total_results = re.compile(r'(\d+) to (\d+) of (\d+)').match(pagination_result)
+    # print('pagination_total_results', pagination_total_results)
+    per_page = int(pagination_total_results.group(2))
+    total = int(pagination_total_results.group(3))
+    # print(per_page, total)
+    # I do not want to paginate more than 20 pages
+    rounded_pages = math.floor(total/per_page) if math.floor(total/per_page) < 20 else 20
+    # print('rounded_pages', rounded_pages)
+    pages = rounded_pages+1 if (rounded_pages < 20 and total % per_page != 0) else rounded_pages
+    # print("pages", pages)
     for i in range(pages):
         # print("pages", pages)
         # print('body', body)
