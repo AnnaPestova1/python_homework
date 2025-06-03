@@ -79,6 +79,7 @@ class Board():
             else:
                 return (True, "O wins!")
 
+# board setup
 print('Lets play Tictactoe')           
 board = Board()
 print(board)
